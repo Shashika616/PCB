@@ -12,7 +12,7 @@ import DesignerPage from './pages/DesignerPage';
 import EngineerPage from './pages/EngineerPage';
 import LogisticPage from './pages/LogisticPage';
 import PrivateRoute from './components/PrivateRoutes';
-import { AuthenticatedComponent } from '@asgardeo/auth-react';
+import {useAuthContext } from '@asgardeo/auth-react';
 
 // import { MuiTypography } from './components/MuiTypography';
 // import { MuiButton } from './components/MuiButton';
@@ -35,6 +35,9 @@ import { AuthenticatedComponent } from '@asgardeo/auth-react';
 // };
 
 function App() {
+
+  const {state, getBasicUserInfo } = useAuthContext();
+  const [userBasicInfo, setUserBasicInfo] = useState(null);
 
   const [pcbs, setpcbs] = useState();
 
@@ -59,6 +62,26 @@ function App() {
     )
 }
 
+useEffect(() => {
+  if (state.isAuthenticated) {
+    const fetchUserInfo = async () => {
+      const info = await getBasicUserInfo();
+      setUserBasicInfo(info);
+    };
+    fetchUserInfo();
+  }
+}, [state.isAuthenticated, getBasicUserInfo]);
+
+const roleBasedComponent = (Component, requiredRole) => {
+  if (!state.isAuthenticated) {
+    return <Navigate to="/login" />;
+  }
+  if (userBasicInfo && userBasicInfo.applicationRoles.includes(requiredRole)) {
+    return <Component />;
+  }
+  return <Navigate to="/landing" />;
+};
+
   return (
     <div className="App">
     
@@ -68,9 +91,9 @@ function App() {
         <Route path="/login" element={<LoginForm/>}/>
         <Route path="/landing" element={<Landingpage/>}/>
 
-        <Route path="/designer" element={<DesignerPage/>}/> 
-        <Route path="/engineer" element={<EngineerPage/>}/>
-        <Route path="/logistics" element={<LogisticPage/>}/> 
+        <Route path="/designer" element={roleBasedComponent(DesignerPage, 'designer')} /> 
+        <Route path="/engineer" element={roleBasedComponent(EngineerPage, 'engineer')} />
+        <Route path="/logistics" element={roleBasedComponent(LogisticPage, 'logistics')} /> 
         {/* <Route
           path="/designer"
           element={
@@ -88,8 +111,8 @@ function App() {
           element={
             <PrivateRoute roles={['logistics']} element={LogisticPage} />
           }
-        />
-        <Route path="*" element={<Navigate to="/login" />} /> */}
+        /> */}
+        <Route path="*" element={<Navigate to="/login" />} />
 
       </Routes>
 

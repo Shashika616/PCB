@@ -50,7 +50,7 @@ const Landingpage = () => {
     
 
   return (
-    <div>Landingpage</div>
+    <div>Loading...</div>
   )
 }
 
