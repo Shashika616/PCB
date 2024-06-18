@@ -1,0 +1,80 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: #f4f4f9; /* Light grey background */
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.wrapper {
+    width: 420px;
+    background: #fff; /* White background for the form */
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+}
+
+.wrapper h1 {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.wrapper h3 {
+    font-size: 18px;
+    margin-bottom: 30px;
+    color: #666;
+}
+
+.wrapper .icon {
+    font-size: 80px;
+    color: #28a745; /* Green color for the icon */
+    margin-bottom: 30px;
+}
+
+.wrapper .button {
+    margin-top: 20px;
+}
+
+.wrapper .button .MuiButton-root {
+    font-size: 16px;
+    padding: 10px 20px;
+    background: #28a745;
+    color: #fff;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+.wrapper .button .MuiButton-root:hover {
+    background: #218838;
+}
+
+/* Optional: Adjust button size and padding for mobile responsiveness */
+@media (max-width: 480px) {
+    .wrapper {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .wrapper h1 {
+        font-size: 28px;
+    }
+
+    .wrapper h3 {
+        font-size: 16px;
+    }
+
+    .wrapper .icon {
+        font-size: 60px;
+    }
+
+    .wrapper .button .MuiButton-root {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}

@@ -1,0 +1,101 @@
+body {
+    background: #f4f4f9; /* Light grey background */
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background: #fff; /* White background for the form */
+    border: 1px solid #e0e0e0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.container h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.container .MuiFormControl-root {
+    margin-bottom: 20px;
+}
+
+.container .MuiTextField-root {
+    margin-bottom: 20px;
+}
+
+.container .MuiButton-root {
+    font-size: 16px;
+    padding: 10px 20px;
+    background: #28a745;
+    color: #fff;
+    border-radius: 30px;
+    transition: background 0.3s;
+}
+
+.container .MuiButton-root.smaller {
+    font-size: 12px;
+    padding: 5px 10px;
+    background: #ffffff;
+    color: #28a745;
+    border-radius: 40px;
+    transition: background 0.3s;
+}
+
+.container .MuiButton-root:hover {
+    background: #218838;
+}
+
+.container .MuiButton-root.smaller:hover {
+    background: #a4e2b1;
+}
+
+.container .MuiTypography-body1 {
+    margin-bottom: 10px;
+}
+
+.container .customer-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.container .customer-item span {
+    margin-left: 10px;
+}
+
+.container .customer-item .MuiButton-root {
+    margin-left: auto;
+}
+
+.container .customer-details {
+    margin-top: 20px;
+}
+
+.container .MuiFormControl-root .Mui-disabled {
+    color: #333; /* Match disabled text color with the theme */
+}
+
+/* Optional: Adjust button size and padding for mobile responsiveness */
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .container h2 {
+        font-size: 24px;
+    }
+
+    .container .MuiButton-root {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    
+}
