@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAuthContext } from "@asgardeo/auth-react";
 import { useNavigate } from 'react-router-dom';
 
@@ -50,7 +50,7 @@ const Landingpage = () => {
     
 
   return (
-    <div>Loading...</div>
+    <div>Loading... </div>
   )
 }
 
