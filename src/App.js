@@ -39,22 +39,22 @@ function App() {
   const {state, getBasicUserInfo } = useAuthContext();
   const [userBasicInfo, setUserBasicInfo] = useState(null);
 
-  const [pcbs, setpcbs] = useState();
+  // const [pcbs, setpcbs] = useState();
 
-  const getpcbs = async () => {
+  // const getpcbs = async () => {
 
-    try{
-      const response = await api.get("http://localhost:8081/api/designers/pcbs");
-      console.log(response.data); 
-      setpcbs(response.data);
-    }catch(err){
-      console.log(err);
-    }
-  }
+  //   try{
+  //     const response = await api.get("http://localhost:8081/api/designers/pcbs");
+  //     console.log(response.data); 
+  //     setpcbs(response.data);
+  //   }catch(err){
+  //     console.log(err);
+  //   }
+  // }
 
-  useEffect(() => {
-    getpcbs();
-  },[])
+  // useEffect(() => {
+  //   getpcbs();
+  // },[])
 
   const FallbackComponent = () => {
     return (

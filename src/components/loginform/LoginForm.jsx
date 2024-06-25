@@ -15,7 +15,11 @@ const LoginForm = () => {
 
      const handleSignIn = async () => {
          try{
-             await signIn();
+             await signIn()
+             .then((res)=>{
+                console.log(res);
+             })
+
          }catch (error){
              console.error("Error signing in",error);
         }
