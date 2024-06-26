@@ -11,10 +11,10 @@ import Loader from './components/Loader';
 // import { AuthContextProvider } from './AuthContext';
 
 const config = {
-  // signInRedirectURL:"http://localhost:3000/landing",
-  signInRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/landing",
-  // signOutRedirectURL:"http://localhost:3000/login",
-  signOutRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/login",
+  signInRedirectURL:"http://localhost:3000/landing",
+  // signInRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/landing",
+  signOutRedirectURL:"http://localhost:3000/login",
+  // signOutRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/login",
   clientID:"Zgh86Vhx6_H6oHmh072aJ4V4Psga",
   baseUrl:"https://api.asgardeo.io/t/orgbi9hw",
   scope:["openid","profile","app_roles", "groups"],

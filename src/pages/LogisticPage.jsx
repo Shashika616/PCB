@@ -28,7 +28,7 @@ const LogisticsPage = () => {
 
     const fetchPCBs = async () => {
         try {
-            const response = await axios.get('https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs');
+            const response = await axios.get('http://localhost:8081/api/logistics/pcbs');
             setPcbs(response.data);
         } catch (error) {
             console.error('Error fetching PCBs:', error);
@@ -37,7 +37,7 @@ const LogisticsPage = () => {
 
     const fetchCustomers = async (pcbId) => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${pcbId}/customers`);
+            const response = await axios.get(`http://localhost:8081/api/logistics/pcbs/${pcbId}/customers`);
             setCustomers(response.data);
         } catch (error) {
             console.error('Error fetching customers:', error);
@@ -52,7 +52,7 @@ const LogisticsPage = () => {
 
     const handleCustomerClick = async (customerId) => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${customerId}`);
+            const response = await axios.get(`http://localhost:8081/api/logistics/pcbs/${selectedPcbId}/customers/${customerId}`);
             setSelectedCustomer(response.data);
         } catch (error) {
             console.error('Error fetching customer details:', error);
@@ -61,7 +61,7 @@ const LogisticsPage = () => {
 
     const handleAddCustomer = async () => {
         try {
-            await axios.post(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers`, newCustomer);
+            await axios.post(`http://localhost:8081/api/logistics/pcbs/${selectedPcbId}/customers`, newCustomer);
             fetchCustomers(selectedPcbId);
             setNewCustomer({ name: '', address: '', numberOfPCBsRequired: 0 });
         } catch (error) {
@@ -71,7 +71,7 @@ const LogisticsPage = () => {
 
     const handleUpdateCustomer = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${selectedCustomer.name}`, selectedCustomer);
+            await axios.put(`http://localhost:8081/api/logistics/pcbs/${selectedPcbId}/customers/${selectedCustomer.name}`, selectedCustomer);
             fetchCustomers(selectedPcbId);
         } catch (error) {
             console.error('Error updating customer:', error);

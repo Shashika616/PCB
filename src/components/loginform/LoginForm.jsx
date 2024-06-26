@@ -15,10 +15,8 @@ const LoginForm = () => {
 
      const handleSignIn = async () => {
          try{
-             await signIn()
-             .then((res)=>{
-                console.log(res);
-             })
+            const res = await signIn()
+            window.localStorage.setItem("Test", res);
 
          }catch (error){
              console.error("Error signing in",error);

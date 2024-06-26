@@ -21,7 +21,7 @@ const DesignerPage = () => {
 
     const getAllPCBs = async () => {
         try {
-            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs");
+            const response = await axios.get("http://localhost:8081/api/designers/pcbs");
             setPcbs(response.data);
         } catch (error) {
             console.error('Error fetching PCBs:', error);
@@ -30,7 +30,7 @@ const DesignerPage = () => {
 
     const updateDesign = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs/${selectedPcbId}/design`, {design} );
+            await axios.put(`http://localhost:8081/api/designers/pcbs/${selectedPcbId}/design`, {design} );
             alert('Design updated successfully!');
         } catch (error) {
             console.error('Error updating design:', error);
@@ -39,7 +39,7 @@ const DesignerPage = () => {
 
     const getDesign = async () => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs/${selectedPcbId}/design`);
+            const response = await axios.get(`http://localhost:8081/api/designers/pcbs/${selectedPcbId}/design`);
             setDesign(response.data);
         } catch (error) {
             console.error('Error fetching design:', error);
@@ -52,7 +52,7 @@ const DesignerPage = () => {
 
     const createNewPcb = async () => {
         try {
-            const response = await axios.post("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs", { modelName: newPcbModel });
+            const response = await axios.post("http://localhost:8081/api/designers/pcbs", { modelName: newPcbModel });
             alert('PCB created successfully!');
             setNewPcbModel(''); // Clear the input field
             getAllPCBs(); // Refresh the PCB list
