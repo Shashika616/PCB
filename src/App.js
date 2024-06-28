@@ -76,7 +76,7 @@ const roleBasedComponent = (Component, requiredRole) => {
   if (!state.isAuthenticated) {
     return <Navigate to="/login" />;
   }
-  if (userBasicInfo && userBasicInfo?.groups[0].includes(requiredRole)) {
+  if (userBasicInfo && userBasicInfo?.roles.includes(requiredRole)) {
     return <Component />;
   }
   return <Navigate to="/landing" />;
