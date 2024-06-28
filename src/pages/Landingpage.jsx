@@ -22,9 +22,9 @@ const Landingpage = () => {
                 getDecodedIDPIDToken().then((token) => {
                     console.log("Decoded token", token);
                 })
-                // const role = userInfo.applicationRoles;
-                const groups = userInfo.groups || [];
-                const role = groups.length > 0 ? groups[0] : '';
+                 const role = userInfo.roles;
+                // const groups = userInfo.groups || [];
+                // const role = groups.length > 0 ? groups[0] : '';
                 switch (role){
                     case 'Designers':
                     navigate('/designer');
