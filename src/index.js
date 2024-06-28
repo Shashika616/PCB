@@ -17,7 +17,7 @@ const config = {
   // signOutRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/login",
   clientID:"Zgh86Vhx6_H6oHmh072aJ4V4Psga",
   baseUrl:"https://api.asgardeo.io/t/orgbi9hw",
-  scope:["openid","profile","app_roles", "groups", "email"],
+  scope:["openid","profile","app_roles", "groups", "email", "view_engineering-params", "update_design", "select_pcb", "view_pcbs", "view_customers", "update_engineering-params", "update_customer", "view_design", "create_customer", "create_pcbs", "view_customer-details"],
   // endpoints: {
   //   authorizationEndpoint: "https://api.asgardeo.io/t/orgbi9hw/oauth2/authorize",
   //   tokenEndpoint: "https://api.asgardeo.io/t/orgbi9hw/oauth2/token",
