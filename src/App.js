@@ -76,7 +76,7 @@ const roleBasedComponent = (Component, requiredRole) => {
   if (!state.isAuthenticated) {
     return <Navigate to="/login" />;
   }
-  if (userBasicInfo && userBasicInfo.applicationRoles.includes(requiredRole)) {
+  if (userBasicInfo && userBasicInfo?.groups[0].includes(requiredRole)) {
     return <Component />;
   }
   return <Navigate to="/landing" />;
@@ -91,9 +91,9 @@ const roleBasedComponent = (Component, requiredRole) => {
         <Route path="/login" element={<LoginForm/>}/>
         <Route path="/landing" element={<Landingpage/>}/>
 
-        <Route path="/designer" element={roleBasedComponent(DesignerPage, 'designer')} /> 
-        <Route path="/engineer" element={roleBasedComponent(EngineerPage, 'engineer')} />
-        <Route path="/logistics" element={roleBasedComponent(LogisticPage, 'logistics')} /> 
+        <Route path="/designer" element={roleBasedComponent(DesignerPage, 'Designers')} /> 
+        <Route path="/engineer" element={roleBasedComponent(EngineerPage, 'Engineers')} />
+        <Route path="/logistics" element={roleBasedComponent(LogisticPage, 'Logistic')} /> 
         {/* <Route
           path="/designer"
           element={

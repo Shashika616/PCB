@@ -22,15 +22,17 @@ const Landingpage = () => {
                 getDecodedIDPIDToken().then((token) => {
                     console.log("Decoded token", token);
                 })
-                const role = userInfo.applicationRoles;
+                // const role = userInfo.applicationRoles;
+                const groups = userInfo.groups || [];
+                const role = groups.length > 0 ? groups[0] : '';
                 switch (role){
-                    case 'designer':
+                    case 'Designers':
                     navigate('/designer');
                     break;
-                case 'engineer':
+                case 'Engineers':
                     navigate('/engineer');
                     break;
-                case 'logistics':
+                case 'Logistic':
                     navigate('/logistics');
                     break;
                 default:
