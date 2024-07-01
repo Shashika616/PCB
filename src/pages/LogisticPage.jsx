@@ -5,11 +5,11 @@ import {
     Box, Button, CssBaseline, FormControl, InputLabel, MenuItem, Select, TextField, Typography
 } from '@mui/material';
 import Navbar from '../components/navbars/NavLogistic';
-import { useAuthContext, getAccessToken } from '@asgardeo/auth-react';
+import { useAuthContext } from '@asgardeo/auth-react';
 import '../styles/LogisticPageStyle.css';
 
 const LogisticsPage = () => {
-    const {signOut} = useAuthContext();
+    const {signOut, getAccessToken } = useAuthContext();
     const [pcbs, setPcbs] = useState([]);
     const [selectedPcbId, setSelectedPcbId] = useState('');
     const [customers, setCustomers] = useState([]);

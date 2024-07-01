@@ -14,11 +14,11 @@ import {
     TextField
 } from '@mui/material';
 import Navbar from '../components/navbars/NavEngineer';
-import { useAuthContext, getAccessToken } from '@asgardeo/auth-react';
+import { useAuthContext } from '@asgardeo/auth-react';
 
 
 const EngineerPage = () => {
-    const { signOut } = useAuthContext();
+    const { signOut, getAccessToken } = useAuthContext();
     const [pcbs, setPcbs] = useState([]);
     const [design, setDesign] = useState('');
     const [selectedPcbId, setSelectedPcbId] = useState('');

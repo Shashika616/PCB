@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import {  Box, CssBaseline, Select, MenuItem, FormControl, InputLabel, Button, Typography, TextField, Stack } from '@mui/material';
 import Navbar from '../components/navbars/NavDesigner';
-import { useAuthContext, getAccessToken } from '@asgardeo/auth-react';
+import { useAuthContext } from '@asgardeo/auth-react';
 import '../styles/DesignerPageStyle.css';
-import { config } from 'process';
+
 
 
 
 const DesignerPage = () => {
 
-    const { state, signIn, signOut } = useAuthContext();
+    const { state, signIn, signOut, getAccessToken } = useAuthContext();
     const [pcbs, setPcbs] = useState([]);
     const [design, setDesign] = useState('');
     const [selectedPcbId, setSelectedPcbId] = useState('');
