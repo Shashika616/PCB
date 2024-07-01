@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 
 import {
@@ -16,6 +16,7 @@ const LogisticsPage = () => {
     const [selectedCustomer, setSelectedCustomer] = useState(null);
     const [newCustomer, setNewCustomer] = useState({ name: '', address: '', numberOfPCBsRequired: 0 });
     const [formValid, setFormValid] = useState(false);
+    const axiosInterceptorSet = useRef(false);
 
     // Get access token from asgardeo SDK and add it to the request headers
     const setupAxiosInterceptor = async () => {
@@ -26,13 +27,16 @@ const LogisticsPage = () => {
                 return config;
             },
             error => {
-                return promise.reject(error);
+                return Promise.reject(error);
             }
         );
     };
 
     useEffect(() => {
-        setupAxiosInterceptor();
+        if(!axiosInterceptorSet.current){
+            setupAxiosInterceptor();
+            axiosInterceptorSet.current(true);
+        }
         fetchPCBs();
     }, []);
 

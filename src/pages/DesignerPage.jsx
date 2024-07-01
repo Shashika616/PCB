@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import {  Box, CssBaseline, Select, MenuItem, FormControl, InputLabel, Button, Typography, TextField, Stack } from '@mui/material';
 import Navbar from '../components/navbars/NavDesigner';
@@ -15,23 +15,29 @@ const DesignerPage = () => {
     const [design, setDesign] = useState('');
     const [selectedPcbId, setSelectedPcbId] = useState('');
     const [newPcbModel, setNewPcbModel] = useState('');
+    const axiosInterceptorSet = useRef(false);
 
     // Get access token from asgardeo SDK and add it to the request headers
     const setupAxiosInterceptor = async () => {
         const token = await getAccessToken();
+        console.log("Access token", token);
         axios.interceptors.request.use(
             config => {
                 config.headers.Authorization = `Bearer ${token}`;
                 return config;
             },
             error => {
-                return promise.reject(error);
+                return Promise.reject(error);
             }
         );
     };
 
+
     useEffect(() => {
-        setupAxiosInterceptor();
+        if(!axiosInterceptorSet.current){
+            setupAxiosInterceptor();
+            axiosInterceptorSet.current(true);
+        }
         getAllPCBs();
     }, []);
 
