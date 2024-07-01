@@ -34,15 +34,7 @@ const EngineerPage = () => {
     // Get access token from asgardeo SDK and add it to the request headers
     const setupAxiosInterceptor = async () => {
         const token = await getAccessToken();
-        axios.interceptors.request.use(
-            config => {
-                config.headers.Authorization = `Bearer ${token}`;
-                return config;
-            },
-            error => {
-                return Promise.reject(error);
-            }
-        );
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     };
 
     useEffect(() => {

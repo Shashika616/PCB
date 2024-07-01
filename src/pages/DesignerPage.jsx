@@ -21,22 +21,14 @@ const DesignerPage = () => {
     const setupAxiosInterceptor = async () => {
         const token = await getAccessToken();
         console.log("Access token", token);
-        axios.interceptors.request.use(
-            config => {
-                config.headers.Authorization = `Bearer ${token}`;
-                return config;
-            },
-            error => {
-                return Promise.reject(error);
-            }
-        );
+        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     };
 
 
     useEffect(() => {
         if(!axiosInterceptorSet.current){
             setupAxiosInterceptor();
-            axiosInterceptorSet.current(true);
+            axiosInterceptorSet.current = true;
         }
         getAllPCBs();
     }, []);

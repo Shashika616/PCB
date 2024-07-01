@@ -22,6 +22,9 @@ const Landingpage = () => {
                 getDecodedIDPIDToken().then((token) => {
                     console.log("Decoded token", token);
                 })
+                getAccessToken().then((accesstoken) => {
+                    console.log("Access Token", accesstoken);
+                })
                  const role = userInfo.roles;
                 // const groups = userInfo.groups || [];
                 // const role = groups.length > 0 ? groups[0] : '';
