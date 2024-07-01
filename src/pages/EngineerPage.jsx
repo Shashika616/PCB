@@ -14,7 +14,7 @@ import {
     TextField
 } from '@mui/material';
 import Navbar from '../components/navbars/NavEngineer';
-import { useAuthContext } from '@asgardeo/auth-react';
+import { useAuthContext, getAccessToken } from '@asgardeo/auth-react';
 
 
 const EngineerPage = () => {
@@ -30,7 +30,22 @@ const EngineerPage = () => {
         solderMaskColor: ''
     });
 
+    // Get access token from asgardeo SDK and add it to the request headers
+    const setupAxiosInterceptor = async () => {
+        const token = await getAccessToken();
+        axios.interceptors.request.use(
+            config => {
+                config.headers.Authorization = `Bearer ${token}`;
+                return config;
+            },
+            error => {
+                return promise.reject(error);
+            }
+        );
+    };
+
     useEffect(() => {
+        setupAxiosInterceptor();
         getAllPCBs();
     }, []);
 

@@ -5,7 +5,7 @@ import {
     Box, Button, CssBaseline, FormControl, InputLabel, MenuItem, Select, TextField, Typography
 } from '@mui/material';
 import Navbar from '../components/navbars/NavLogistic';
-import { useAuthContext } from '@asgardeo/auth-react';
+import { useAuthContext, getAccessToken } from '@asgardeo/auth-react';
 import '../styles/LogisticPageStyle.css';
 
 const LogisticsPage = () => {
@@ -17,7 +17,22 @@ const LogisticsPage = () => {
     const [newCustomer, setNewCustomer] = useState({ name: '', address: '', numberOfPCBsRequired: 0 });
     const [formValid, setFormValid] = useState(false);
 
+    // Get access token from asgardeo SDK and add it to the request headers
+    const setupAxiosInterceptor = async () => {
+        const token = await getAccessToken();
+        axios.interceptors.request.use(
+            config => {
+                config.headers.Authorization = `Bearer ${token}`;
+                return config;
+            },
+            error => {
+                return promise.reject(error);
+            }
+        );
+    };
+
     useEffect(() => {
+        setupAxiosInterceptor();
         fetchPCBs();
     }, []);
 
