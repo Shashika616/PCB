@@ -30,24 +30,36 @@ const EngineerPage = () => {
         solderMaskColor: ''
     });
     const axiosInterceptorSet = useRef(false);
+    const token = useRef("");
 
     // Get access token from asgardeo SDK and add it to the request headers
     const setupAxiosInterceptor = async () => {
-        const token = await getAccessToken();
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        const _token = await getAccessToken();
+        token.current = _token;
+        console.log("Access token", token.current);
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     };
 
     useEffect(() => {
-        if(!axiosInterceptorSet.current){
-            setupAxiosInterceptor();
-            axiosInterceptorSet.current(true);
+        if (!axiosInterceptorSet.current) {
+            setupAxiosInterceptor().then(() => {
+                axiosInterceptorSet.current = true;
+                getAllPCBs();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         }
-        getAllPCBs();
     }, []);
 
     const getAllPCBs = async () => {
         try {
-            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs");
+            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs",{
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             setPcbs(response.data);
         } catch (error) {
             console.error('Error fetching PCBs:', error);
@@ -56,7 +68,12 @@ const EngineerPage = () => {
 
     const getDesign = async () => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/design`);
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/design`,{
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             setDesign(response.data);
         } catch (error) {
             console.error('Error fetching design:', error);
@@ -65,7 +82,12 @@ const EngineerPage = () => {
 
     const getEngineeringParameters = async () => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`);
+        const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`,{
+            headers : {
+                'Authorization' : `Bearer ${token.current}`,
+                'Content-Type': 'application/json'
+            }
+        });
             const mappedData = mapUndefinedToText(response.data);
             setEngineeringParameters(mappedData);
         } catch (error) {
@@ -75,7 +97,12 @@ const EngineerPage = () => {
 
     const updateEngineeringParameters = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`, engineeringParameters);
+            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`, engineeringParameters, {
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             alert('Engineering parameters updated successfully!');
             clearFields();
         } catch (error) {

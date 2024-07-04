@@ -17,19 +17,26 @@ const LogisticsPage = () => {
     const [newCustomer, setNewCustomer] = useState({ name: '', address: '', numberOfPCBsRequired: 0 });
     const [formValid, setFormValid] = useState(false);
     const axiosInterceptorSet = useRef(false);
+    const token = useRef("");
 
     // Get access token from asgardeo SDK and add it to the request headers
     const setupAxiosInterceptor = async () => {
-        const token = await getAccessToken();
-        axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+        const _token = await getAccessToken();
+        token.current = _token;
+        console.log("Access token", token.current);
+        // axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     };
 
     useEffect(() => {
-        if(!axiosInterceptorSet.current){
-            setupAxiosInterceptor();
-            axiosInterceptorSet.current(true);
+        if (!axiosInterceptorSet.current) {
+            setupAxiosInterceptor().then(() => {
+                axiosInterceptorSet.current = true;
+                fetchPCBs();
+            })
+            .catch((error) => {
+                console.log(error);
+            })
         }
-        fetchPCBs();
     }, []);
 
     useEffect(() => {
@@ -39,7 +46,12 @@ const LogisticsPage = () => {
 
     const fetchPCBs = async () => {
         try {
-            const response = await axios.get('https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs');
+            const response = await axios.get('https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs', {
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             setPcbs(response.data);
         } catch (error) {
             console.error('Error fetching PCBs:', error);
@@ -48,7 +60,12 @@ const LogisticsPage = () => {
 
     const fetchCustomers = async (pcbId) => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${pcbId}/customers`);
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${pcbId}/customers`, {
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             setCustomers(response.data);
         } catch (error) {
             console.error('Error fetching customers:', error);
@@ -63,7 +80,12 @@ const LogisticsPage = () => {
 
     const handleCustomerClick = async (customerId) => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${customerId}`);
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${customerId}`, {
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             setSelectedCustomer(response.data);
         } catch (error) {
             console.error('Error fetching customer details:', error);
@@ -72,7 +94,12 @@ const LogisticsPage = () => {
 
     const handleAddCustomer = async () => {
         try {
-            await axios.post(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers`, newCustomer);
+            await axios.post(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers`, newCustomer, {
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             fetchCustomers(selectedPcbId);
             setNewCustomer({ name: '', address: '', numberOfPCBsRequired: 0 });
         } catch (error) {
@@ -82,7 +109,12 @@ const LogisticsPage = () => {
 
     const handleUpdateCustomer = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-dev.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${selectedCustomer.name}`, selectedCustomer);
+            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${selectedCustomer.name}`, selectedCustomer, {
+                headers : {
+                    'Authorization' : `Bearer ${token.current}`,
+                    'Content-Type': 'application/json'
+                }
+            });
             fetchCustomers(selectedPcbId);
         } catch (error) {
             console.error('Error updating customer:', error);
