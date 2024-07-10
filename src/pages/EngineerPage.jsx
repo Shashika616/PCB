@@ -54,7 +54,7 @@ const EngineerPage = () => {
 
     const getAllPCBs = async () => {
         try {
-            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs",{
+            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/engineers/pcbs",{
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ const EngineerPage = () => {
 
     const getDesign = async () => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/design`,{
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/engineers/pcbs/${selectedPcbId}/design`,{
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -82,7 +82,7 @@ const EngineerPage = () => {
 
     const getEngineeringParameters = async () => {
         try {
-        const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`,{
+        const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`,{
             headers : {
                 'Authorization' : `Bearer ${token.current}`,
                 'Content-Type': 'application/json'
@@ -97,7 +97,7 @@ const EngineerPage = () => {
 
     const updateEngineeringParameters = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`, engineeringParameters, {
+            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/engineers/pcbs/${selectedPcbId}/engineering-parameters`, engineeringParameters, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'

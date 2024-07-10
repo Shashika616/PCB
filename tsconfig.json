@@ -17,6 +17,6 @@
     "strict": true,                                      /* Enable all strict type-checking options. */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "include": ["src"],                                    /* Specifies the root files and directories to be included in the compilation */
+  "include": ["src", "build-no-split.js"],                                    /* Specifies the root files and directories to be included in the compilation */
   "exclude": ["node_modules"]                            /* Specifies the files and directories to be excluded */
 }

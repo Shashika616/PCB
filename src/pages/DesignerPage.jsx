@@ -49,7 +49,7 @@ const DesignerPage = () => {
 
     const getAllPCBs = async () => {
         try {
-            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs", {
+            const response = await axios.get("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/designers/pcbs", {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -63,7 +63,7 @@ const DesignerPage = () => {
 
     const updateDesign = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs/${selectedPcbId}/design`, {design}, {
+            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/designers/pcbs/${selectedPcbId}/design`, {design}, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ const DesignerPage = () => {
 
     const getDesign = async () => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs/${selectedPcbId}/design`, {
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/designers/pcbs/${selectedPcbId}/design`, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -95,7 +95,7 @@ const DesignerPage = () => {
 
     const createNewPcb = async () => {
         try {
-            const response = await axios.post("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcbservice/v1.0/api/designers/pcbs", { modelName: newPcbModel }, {
+            const response = await axios.post("https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/designers/pcbs", { modelName: newPcbModel }, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
