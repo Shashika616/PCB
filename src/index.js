@@ -11,10 +11,10 @@ import Loader from './components/Loader';
 // import { AuthContextProvider } from './AuthContext';
 
 const config = {
-  signInRedirectURL:"http://localhost:3000/landing",
-  // signInRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/landing",
-  signOutRedirectURL:"http://localhost:3000/login",
-  // signOutRedirectURL:"https://5d9b1be5-a9ce-4153-8d11-2d58a3f5a555.e1-us-east-azure.choreoapps.dev/login",
+  // signInRedirectURL:"http://localhost:3000/landing",
+  signInRedirectURL:"https://fe1b9d98-4f90-40c6-a52e-8e2d1396f647.e1-us-east-azure.choreoapps.dev/landing",
+  // signOutRedirectURL:"http://localhost:3000/login",
+  signOutRedirectURL:"https://fe1b9d98-4f90-40c6-a52e-8e2d1396f647.e1-us-east-azure.choreoapps.dev/login",
   clientID:"EJ1IpymiHraCoKfCl3OPcZtynJoa",
   baseUrl:"https://api.asgardeo.io/t/orgbi9hw",
   scope:["openid","profile","app_roles", "groups", "view_engineering-params", "update_design", "select_pcb", "view_pcbs", "view_customers", "update_engineering-params", "update_customer", "view_design", "create_customer", "create_pcbs", "view_customer-details"],
