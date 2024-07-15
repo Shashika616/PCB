@@ -46,7 +46,7 @@ const LogisticsPage = () => {
 
     const fetchPCBs = async () => {
         try {
-            const response = await axios.get('https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/logistics/pcbs', {
+            const response = await axios.get('https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-3/v1.0/api/logistics/pcbs', {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -60,7 +60,7 @@ const LogisticsPage = () => {
 
     const fetchCustomers = async (pcbId) => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/logistics/pcbs/${pcbId}/customers`, {
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-3/v1.0/api/logistics/pcbs/${pcbId}/customers`, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -80,7 +80,7 @@ const LogisticsPage = () => {
 
     const handleCustomerClick = async (customerId) => {
         try {
-            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${customerId}`, {
+            const response = await axios.get(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-3/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${customerId}`, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -94,7 +94,7 @@ const LogisticsPage = () => {
 
     const handleAddCustomer = async () => {
         try {
-            await axios.post(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/logistics/pcbs/${selectedPcbId}/customers`, newCustomer, {
+            await axios.post(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-3/v1.0/api/logistics/pcbs/${selectedPcbId}/customers`, newCustomer, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
@@ -109,7 +109,7 @@ const LogisticsPage = () => {
 
     const handleUpdateCustomer = async () => {
         try {
-            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-2/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${selectedCustomer.name}`, selectedCustomer, {
+            await axios.put(`https://2bf3cacc-4d25-40ba-8fba-b400401187f5-prod.e1-us-east-azure.choreoapis.dev/pcb-management/pcb-service-3/v1.0/api/logistics/pcbs/${selectedPcbId}/customers/${selectedCustomer.name}`, selectedCustomer, {
                 headers : {
                     'Authorization' : `Bearer ${token.current}`,
                     'Content-Type': 'application/json'
